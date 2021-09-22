@@ -6,6 +6,8 @@ package InvoiceService;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
+
 public class InvoiceServiceTest {
 	@Test
 	public void givenDistanceAndTime_ShouldReturnTotalFare() {
@@ -31,6 +33,6 @@ public class InvoiceServiceTest {
 		Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
 		InvoiceSummary fare = invoiceGenerator.calculateFare(rides);
 		InvoiceSummary expected = new InvoiceSummary(2,30);
-		assertEquals(expected, fare, 0.0);
+		assertEquals(expected, fare);
 	}
 }
