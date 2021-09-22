@@ -21,7 +21,7 @@ public class InvoiceGenerator {
 			return Math.max(MINIMUM_FARE, totalFare);
 		} else {
 			totalFare = distance * PREMIUM_MINIMUM_COST_PER_KILOMETER + time * PREMIUM_COST_PER_TIME;
-			return Math.max(MINIMUM_FARE, totalFare);
+			return Math.max(PREMIUM_MINIMUM_FARE, totalFare);
 		}
 	}
 
