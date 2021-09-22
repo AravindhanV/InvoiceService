@@ -4,6 +4,9 @@
 package InvoiceService;
 
 import org.junit.Test;
+
+import InvoiceService.Ride.RideType;
+
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
@@ -30,7 +33,7 @@ public class InvoiceServiceTest {
 	@Test
 	public void givenMultipleWrites_ShouldReturnInvoiceSummary() {
 		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-		Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+		Ride[] rides = { new Ride(2.0, 5,RideType.RIDE_NORMAL), new Ride(0.1, 1,RideType.RIDE_NORMAL) };
 		InvoiceSummary fare = invoiceGenerator.calculateFare(rides);
 		InvoiceSummary expected = new InvoiceSummary(2,30);
 		assertEquals(expected, fare);
@@ -39,9 +42,9 @@ public class InvoiceServiceTest {
 	@Test
 	public void givenUserId_ShouldReturnListOfRides() {
 		RideRepository rideRepository = RideRepository.getInstance();
-		Ride ride1 = new Ride(2,5);
-		Ride ride2 = new Ride(1,4);
-		Ride ride3 = new Ride(0.1,1);
+		Ride ride1 = new Ride(2,5,RideType.RIDE_NORMAL);
+		Ride ride2 = new Ride(1,4,RideType.RIDE_NORMAL);
+		Ride ride3 = new Ride(0.1,1,RideType.RIDE_NORMAL);
 		
 		rideRepository.addRide("abc",ride1);
 		rideRepository.addRide("xyz",ride2);
@@ -54,9 +57,9 @@ public class InvoiceServiceTest {
 	@Test
 	public void givenUserID_ShouldReturnInvoiceSummaryForUser() {
 		RideRepository rideRepository = RideRepository.getInstance();
-		Ride ride1 = new Ride(2.0,5);
-		Ride ride2 = new Ride(1,4);
-		Ride ride3 = new Ride(0.1,1);
+		Ride ride1 = new Ride(2.0,5,RideType.RIDE_NORMAL);
+		Ride ride2 = new Ride(1,4,RideType.RIDE_NORMAL);
+		Ride ride3 = new Ride(0.1,1,RideType.RIDE_NORMAL);
 		
 		rideRepository.addRide("abc",ride1);
 		rideRepository.addRide("xyz",ride2);
