@@ -2,13 +2,13 @@ package InvoiceService;
 
 public class Ride {
 	private double distance;
-	private double time;
+	private int time;
 	
-	public double getTime() {
+	public int getTime() {
 		return time;
 	}
 
-	public void setTime(double time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 
