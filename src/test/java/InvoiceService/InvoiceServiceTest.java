@@ -38,7 +38,7 @@ public class InvoiceServiceTest {
 	
 	@Test
 	public void givenUserId_ShouldReturnListOfRides() {
-		RideRepository rideRepository = new RideRepository();
+		RideRepository rideRepository = RideRepository.getInstance();
 		Ride ride1 = new Ride(2,5);
 		Ride ride2 = new Ride(1,4);
 		Ride ride3 = new Ride(0.1,1);
@@ -49,5 +49,23 @@ public class InvoiceServiceTest {
 		
 		Ride[] rides = rideRepository.getRides("abc");
 		assertEquals(2,rides.length);
+	}
+	
+	@Test
+	public void givenUserID_ShouldReturnInvoiceSummaryForUser() {
+		RideRepository rideRepository = RideRepository.getInstance();
+		Ride ride1 = new Ride(2.0,5);
+		Ride ride2 = new Ride(1,4);
+		Ride ride3 = new Ride(0.1,1);
+		
+		rideRepository.addRide("abc",ride1);
+		rideRepository.addRide("xyz",ride2);
+		rideRepository.addRide("abc",ride3);
+		
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+		
+		InvoiceSummary fare = invoiceGenerator.calculateFare("abc");
+		InvoiceSummary expected = new InvoiceSummary(2,30);
+		assertEquals(expected, fare);
 	}
 }
