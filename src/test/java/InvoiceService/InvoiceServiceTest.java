@@ -17,7 +17,7 @@ public class InvoiceServiceTest {
 		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
 		double distance = 2.0;
 		int time = 5;
-		double fare = invoiceGenerator.calculateFare(distance, time);
+		double fare = invoiceGenerator.calculateFare(distance, time,RideType.RIDE_NORMAL);
 		assertEquals(25, fare, 0.0);
 	}
 
@@ -26,7 +26,7 @@ public class InvoiceServiceTest {
 		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
 		double distance = 0.1;
 		int time = 1;
-		double fare = invoiceGenerator.calculateFare(distance, time);
+		double fare = invoiceGenerator.calculateFare(distance, time,RideType.RIDE_NORMAL);
 		assertEquals(5, fare, 0.0);
 	}
 
@@ -70,5 +70,14 @@ public class InvoiceServiceTest {
 		InvoiceSummary fare = invoiceGenerator.calculateFare("abc");
 		InvoiceSummary expected = new InvoiceSummary(2,30);
 		assertEquals(expected, fare);
+	}
+	
+	@Test
+	public void givenPremiumDistanceAndTime_ShouldReturnTotalPremiumFare() {
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+		double distance = 2.0;
+		int time = 5;
+		double fare = invoiceGenerator.calculateFare(distance, time,RideType.RIDE_PREMIUM);
+		assertEquals(40, fare, 0.0);
 	}
 }
