@@ -21,4 +21,9 @@ public class InvoiceGenerator {
 		}
 		return new InvoiceSummary(rides.length,totalFare);
 	}
+	
+	public InvoiceSummary calculateFare(String uid) {
+		RideRepository rideRepository = RideRepository.getInstance();
+		return calculateFare(rideRepository.getRides(uid));
+	}
 }
