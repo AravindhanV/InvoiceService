@@ -5,9 +5,18 @@ import java.util.HashMap;
 
 public class RideRepository {
 	HashMap<String,ArrayList<Ride>> ridesMap;
+	private static RideRepository repository;
 	
-	public RideRepository() {
+	private RideRepository() {
 		this.ridesMap = new HashMap<>();
+		repository=null;
+	}
+	
+	public static RideRepository getInstance() {
+		if(repository==null) {
+			repository = new RideRepository();
+		}
+		return repository;
 	}
 	
 	public void addRide(String uid, Ride ride) {
